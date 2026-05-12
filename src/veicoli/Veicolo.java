@@ -2,6 +2,12 @@
  */
 package veicoli;
 
+import java.util.Random;
+import veicoli.leggeri.Automobile;
+import veicoli.leggeri.Motocicletta;
+import veicoli.pesanti.Autobus;
+import veicoli.pesanti.Camion;
+
 /**
  *
  * @author GI.AIROLDI
@@ -47,5 +53,43 @@ public abstract class Veicolo {
         this.priorita = priorita;
     }
     
+    public static Veicolo generaVeicolo(){
+        Random random = new Random();
+        int n = random.nextInt(4);
+        Float tempoTransitoRandom = random.nextFloat(8);
+        int prioritaRandom = random.nextInt(1);
+        
+        
+        tempoTransitoRandom +=1;
+        n +=1;
+        switch(n){
+            case 1:
+                return new Automobile(generaTarga(), tempoTransitoRandom, prioritaRandom);
+            case 2:
+                return new Motocicletta(generaTarga(), tempoTransitoRandom, prioritaRandom);
+            case 3:
+                return new Autobus(generaTarga(), tempoTransitoRandom, prioritaRandom);
+        }
+        return new Camion(generaTarga(), tempoTransitoRandom, prioritaRandom);
+    }
+    
+    private static String generaTarga() {
+        Random random = new Random();
+        StringBuilder targa = new StringBuilder();
+
+        for (int i = 0; i < 2; i++) {
+            targa.append((char) ('A' + random.nextInt(26)));
+        }
+
+        for (int i = 0; i < 3; i++) {
+            targa.append(random.nextInt(10));
+        }
+
+        for (int i = 0; i < 2; i++) {
+            targa.append((char) ('A' + random.nextInt(26)));
+        }
+
+        return targa.toString();
+    }
     
 }
