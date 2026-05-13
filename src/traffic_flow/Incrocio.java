@@ -13,6 +13,14 @@ import veicoli.Veicolo;
 public class Incrocio {
     private Semaforo semaforo;
 
+    public Incrocio() {
+        this.semaforo = new Semaforo(FaseSemaforo.rosso);
+    }
+
+    public Incrocio(Semaforo semaforo) {
+        this.semaforo = semaforo;
+    }
+
     public synchronized void transitaCorsiaNS(Veicolo v) throws InterruptedException {
         semaforo.attendi(FaseSemaforo.verde);
     }

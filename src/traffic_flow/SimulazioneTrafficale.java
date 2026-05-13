@@ -13,6 +13,7 @@ import veicoli.Veicolo;
 public class SimulazioneTrafficale {
     private Dispatcher dispatcher = new Dispatcher();
     private Incrocio incrocio = new Incrocio();
+    private MonitorTrafficale monitor;
 
     public SimulazioneTrafficale(){
         
@@ -25,8 +26,18 @@ public class SimulazioneTrafficale {
             
             Veicolo v = Veicolo.generaVeicolo();
 
-            dispatcher.arrivo(v, generaDirezioneTransito(), incrocio);
+            long tsArrivo = System.currentTimeMillis();
+            DirezioneTransito dir = generaDirezioneTransito();
+            // Per avvisare il monitor dell'arrivo di un veicolo
+            if (monitor != null) {
+                monitor.registraArrivo(dir.name());
+            }
+            dispatcher.arrivo(v, dir, incrocio, tsArrivo, monitor);
         }
+    }
+
+    public void setMonitor(MonitorTrafficale monitor) {
+        this.monitor = monitor;
     }
 
     private DirezioneTransito generaDirezioneTransito(){

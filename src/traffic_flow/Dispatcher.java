@@ -10,8 +10,8 @@ public class Dispatcher {
     
     private final ExecutorService pool = Executors.newFixedThreadPool(NUM_THREAD);
     
-    public void arrivo(Veicolo v, DirezioneTransito direzioneTransito, Incrocio incrocio){
-        pool.submit(new TaskTransito(v, direzioneTransito, incrocio));
+    public void arrivo(Veicolo v, DirezioneTransito direzioneTransito, Incrocio incrocio, long tsArrivo, MonitorTrafficale monitor){
+        pool.submit(new TaskTransito(v, direzioneTransito, incrocio, tsArrivo, monitor));
     }
 
     public void spegni(){
