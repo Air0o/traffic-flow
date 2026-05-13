@@ -17,22 +17,14 @@ public class Semaforo {
         }
     }
 
-    public synchronized void cambiaFase(){
+    public synchronized void cambiaFase() throws IllegalStateException{
         //rosso > verde > giallo > rosso
-        switch(faseAttuale){
-            case rosso:
-                faseAttuale = FaseSemaforo.verde;
-                break;
-            case giallo:
-                faseAttuale = FaseSemaforo.rosso;
-                break;
-            case verde:
-                faseAttuale = FaseSemaforo.giallo;
-                break;
-            default:
-                faseAttuale = FaseSemaforo.rosso;
-                break;
-        }
+        faseAttuale = switch (faseAttuale) {
+            case rosso -> FaseSemaforo.verde;
+            case giallo -> FaseSemaforo.rosso;
+            case verde -> FaseSemaforo.giallo;
+            default -> throw new IllegalStateException("Il semaforo non è ne' rosso ne' giallo ne' verde! (Com'è possibile???)");
+        };
         notifyAll();
     }
 }
