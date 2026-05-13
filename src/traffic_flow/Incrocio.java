@@ -24,4 +24,10 @@ public class Incrocio {
     public void scambiaFaseSemaforo(){
         semaforo.cambiaFase();
     }
+
+    public Semaforo getSemaforo() {
+        return semaforo;
+    }
+
+
 }

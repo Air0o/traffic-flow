@@ -27,4 +27,10 @@ public class Semaforo {
         };
         notifyAll();
     }
+
+    public FaseSemaforo getFaseAttuale() {
+        return faseAttuale;
+    }
+
+
 }

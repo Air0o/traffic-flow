@@ -1,25 +1,17 @@
-/*
- */
 package traffic_flow;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import transito.DirezioneTransito;
-import transito.TaskTransito;
+import java.util.concurrent.*;
+import transito.*;
 import veicoli.*;
 
-/**
- *
- * @author GI.AIROLDI
- */
 public class Dispatcher {
     
     private final Integer NUM_THREAD = 4;
     
     private final ExecutorService pool = Executors.newFixedThreadPool(NUM_THREAD);
     
-    public void arrivo(Veicolo v, DirezioneTransito direzioneTransito){
-        pool.submit(new TaskTransito(v, direzioneTransito));
+    public void arrivo(Veicolo v, DirezioneTransito direzioneTransito, Incrocio incrocio){
+        pool.submit(new TaskTransito(v, direzioneTransito, incrocio));
     }
 
     public void spegni(){

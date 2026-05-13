@@ -12,6 +12,8 @@ public class Traffic_flow {
     @SuppressWarnings("CallToPrintStackTrace")
     public static void main(String[] args) {
         SimulazioneTrafficale simulazione = new SimulazioneTrafficale();
+        MonitorTrafficale monitor = new MonitorTrafficale(simulazione);
+        monitor.start();
 
         try {
             simulazione.start();
