@@ -4,7 +4,9 @@ package traffic_flow;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import veicoli.Veicolo;
+import transito.DirezioneTransito;
+import transito.TaskTransito;
+import veicoli.*;
 
 /**
  *
@@ -16,7 +18,11 @@ public class Dispatcher {
     
     private final ExecutorService pool = Executors.newFixedThreadPool(NUM_THREAD);
     
-    public void arrivo(Veicolo v){
-        pool.submit(new TaskTransito(v));
+    public void arrivo(Veicolo v, DirezioneTransito direzioneTransito){
+        pool.submit(new TaskTransito(v, direzioneTransito));
+    }
+
+    public void spegni(){
+        pool.shutdown();
     }
 }

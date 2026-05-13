@@ -63,12 +63,15 @@ public abstract class Veicolo {
         tempoTransitoRandom +=1;
         n +=1;
         switch(n){
-            case 1:
+            case 1 -> {
                 return new Automobile(generaTarga(), tempoTransitoRandom, prioritaRandom);
-            case 2:
+            }
+            case 2 -> {
                 return new Motocicletta(generaTarga(), tempoTransitoRandom, prioritaRandom);
-            case 3:
+            }
+            case 3 -> {
                 return new Autobus(generaTarga(), tempoTransitoRandom, prioritaRandom);
+            }
         }
         return new Camion(generaTarga(), tempoTransitoRandom, prioritaRandom);
     }

@@ -1,5 +1,3 @@
-/*
- */
 package semaforo;
 
 /**
@@ -8,7 +6,10 @@ package semaforo;
  */
 public class Semaforo {
     private FaseSemaforo faseAttuale;
-    
+
+    public Semaforo(FaseSemaforo faseIniziale){
+        faseAttuale = faseIniziale;
+    }
 
     public synchronized void attendi(FaseSemaforo faseDiPassaggio) throws InterruptedException{
         while(faseAttuale != faseDiPassaggio){

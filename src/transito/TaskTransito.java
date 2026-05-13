@@ -1,18 +1,17 @@
-/*
- */
-package traffic_flow;
+package transito;
 
-import veicoli.Veicolo;
-
+import veicoli.*;
 /**
  *
  * @author GI.AIROLDI
  */
 public class TaskTransito implements Runnable{
     private Veicolo v;
+    private DirezioneTransito direzioneTransito;
 
-    public TaskTransito(Veicolo v) {
+    public TaskTransito(Veicolo v, DirezioneTransito direzioneTransito) {
         this.v = v;
+        this.direzioneTransito = direzioneTransito;
     }
 
     @Override
